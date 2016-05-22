@@ -14,11 +14,11 @@ import java.net.URL;
  * creates bus objects and retrieves their arrival times for different stops from a URL.
  */
 public class Bus {
-    private String [] bus14URL;
     private String thisBusURL;
     private String busName;
     private String times;
     private String [] timesAry;
+
     Bus(int busNumber, int routeNumber) {
         BusURLs URLs = new BusURLs(busNumber, routeNumber);
         busName = URLs.getBusName();
@@ -39,11 +39,12 @@ public class Bus {
             if(!times.contains(split))
                 split = "</div><div> 2nd Departure   ";
             timesAry = times.split(split);
-            return "First arrival: " + timesAry [0];
+            return "First arrival: " + timesAry[0];
         } catch (Exception e) {
-            return "Error: " + e;
+            //TODO handle exception
+            e.printStackTrace();
+            return "ERROR";
         }
-
     }
     public String getTime2 () {
         if(timesAry.length == 1)
@@ -52,6 +53,7 @@ public class Bus {
     }
 
     private class DownloadUrl extends AsyncTask<URL, Integer, String> {
+        @Override
         protected String doInBackground(URL... urls) {
             try {
                 BufferedReader buffer = null;
@@ -66,7 +68,8 @@ public class Bus {
                     if (buffer != null) try {
                         buffer.close();
                     } catch (IOException e) {
-                        System.out.println("2:" + e);
+                        //TODO handle exception
+                        e.printStackTrace();
                     }
                 }
                 String start = "<div>Next Arrival&nbsp;&nbsp;&nbsp;";
@@ -78,7 +81,8 @@ public class Bus {
                 return busTimes;
 
             } catch (Exception e) {
-                System.out.println("3:" + e);
+                //TODO handle exception
+                e.printStackTrace();
                 return "ERROR";
             }
         }

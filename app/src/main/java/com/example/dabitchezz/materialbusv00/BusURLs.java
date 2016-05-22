@@ -10,7 +10,7 @@ public class BusURLs {
     public BusURLs(int busNumber, int routeNumber) {
         switch(busNumber) {
             case 1:
-                busURL = "aaa";
+                busURL = "";
                 break;
             case 2:
                 break;
