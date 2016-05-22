@@ -23,14 +23,14 @@ public class Bus {
         BusURLs URLs = new BusURLs(busNumber, routeNumber);
         busName = URLs.getBusName();
         thisBusURL = URLs.getBusURL();
+        refreshTimes();
     }
 
     public String getBusTitle() {
         return busName;
     }
 
-    // gets time from URL and parses it
-    public String getTime1() {
+    public void refreshTimes() {
         try {
             //run AsyncTask and get the times from the url
             times = new DownloadUrl().execute(new URL(thisBusURL)).get();
@@ -39,12 +39,14 @@ public class Bus {
             if(!times.contains(split))
                 split = "</div><div> 2nd Departure   ";
             timesAry = times.split(split);
-            return "First arrival: " + timesAry[0];
         } catch (Exception e) {
             //TODO handle exception
             e.printStackTrace();
-            return "ERROR";
         }
+    }
+    // gets time from URL and parses it
+    public String getTime1() {
+        return "First arrival: " + timesAry[0];
     }
     public String getTime2 () {
         if(timesAry.length == 1)
