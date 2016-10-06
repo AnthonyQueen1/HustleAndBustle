@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private List<Bus> busList = new ArrayList<>();
-    private RecyclerView recyclerView; // TODO make recyclerList less laggy
+    private RecyclerView recyclerView;
     private BusAdapter busAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
