@@ -41,4 +41,7 @@ dependencies {
 
     //Gson
     compile 'com.google.code.gson:gson:2.4'
+
+    //JSoup
+    compile 'org.jsoup:jsoup:1.10.1'
 }

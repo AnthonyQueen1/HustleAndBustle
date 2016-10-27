@@ -40,15 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
     // initialize some bus data so list is not empty when app is created.
     public void prepareBusData() {
-        busmodel = new BusViewModel(busList, busAdapter, swipeRefreshLayout);
+        swipeRefreshLayout.setRefreshing(true);
         for(int i=1; i<36; i++) {
             Bus bus = new Bus(14, i);
             busList.add(bus);
-            busmodel.getBusTime(bus);
-            busAdapter.notifyDataSetChanged();
         }
-
-        busAdapter.notifyDataSetChanged();
+        busmodel = new BusViewModel(busList, busAdapter, swipeRefreshLayout);
+        busmodel.getTimes(busList);
     }
 
     // refreshes times for buses in bus list.
